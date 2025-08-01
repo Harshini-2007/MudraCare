@@ -53,6 +53,7 @@ Inspired by the healing power of yoga and mudras, this project aims to make holi
 - Integrated audio playback with UI events
 - Designed a mobile-first experience
 
+
   #Developers
   Harshini Perumal
   Harini Perumal
