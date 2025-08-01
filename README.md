@@ -6,13 +6,19 @@ Domain:Healthcare
 #Features
 - Loader[Element 1 used]
 -  Home page with ripple effect cursor  and infinite loop marquee[Element 6 and Element 8]
--  Emergency Mudra section (Heart, Asthma, Dizziness)
--  Mudras for specific health concerns like:
+-  Mudras for specific health concerns like:(click on the emoji or text to view mudra)
   - Body pain
   - Eye & ear problems
   - Cold, fever, cough
   - Headaches & migraines
-  - Mudra for specific moods
+    
+    2nd category
+    
+  - Mudra for specific moods (click on dropdown and choose)
+    
+    3rd category
+    
+  - Mudra for emergency situations(click on emojis or text to view the mudra)
 -  Mudra Practice Timer (5, 10, 15 min options) with relaxing music and background change based on the mood selected by user[Mystery element]
 -  Responsive design for mobile and desktop
 
@@ -44,6 +50,14 @@ Domain:Healthcare
 #Insipiration
 
 Inspired by the healing power of yoga and mudras, this project aims to make holistic wellness accessible to everyone in a visual and interactive way.
+
+#What is Extraordinary here
+
+-Re-Discovering India's ancient strength 
+-Category wise simple learning through images 
+-Inbuilt with practice timer set up containing mystery features
+-User friendly and interactive 
+
 
 
 #Learnings
