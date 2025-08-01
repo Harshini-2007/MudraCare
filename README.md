@@ -55,7 +55,7 @@ Inspired by the healing power of yoga and mudras, this project aims to make holi
 
 
   #Developers
-  Harshini Perumal
+  Harshini Perumal and
   Harini Perumal
 
 
