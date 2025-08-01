@@ -39,28 +39,45 @@
     }
 
 
-    .button-group {
-      text-align: center;
-      margin: 30px 0;
-    }
+   .button-group {
+  text-align: center;
+  margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
 
-    .button-group button {
-      background-color: #678d58;
-      color: white;
-      padding: 12px 25px;
-      margin: 0 10px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+.button-group button {
+  background-color: #678d58;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-width: 150px;
+}
+
+
+@media (max-width: 500px) {
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-group button {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
 
     .button-group button:hover {
       background-color: #4d6f3d;
     }
 
-    /* Popup styles */
     .overlay {
       display: none;
       position: fixed;

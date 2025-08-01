@@ -83,37 +83,39 @@
     }
 
     .marquee {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      padding: 30px 0;
-      background-color: rgba(255, 255, 255, 0.2);
-      position: relative;
-      z-index: 1;
-    }
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 30px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
 
-    .marquee span {
-      display: inline-block;
-      margin: 0 40px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #fff;
-      animation: scrollText 5s linear infinite;
-    }
+.marquee-content {
+  display: inline-flex;
+  animation: scrollText 20s linear infinite;
+}
 
-    .marquee:hover span {
-      animation-play-state: paused;
-    }
+.marquee-content span {
+  margin: 0 40px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+}
 
-    @keyframes scrollText {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
+@keyframes scrollText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -126,8 +128,11 @@
     <button class="ripple-btn" onclick="goToMain(event)">Start Now</button>
   </div>
 
-  <div class="loop-title">Explore Mudras</div>
-  <div class="marquee">
+  
+ 
+<div class="loop-title">Explore Mudras</div>
+<div class="marquee">
+  <div class="marquee-content">
     <span>🧘‍♂️ Gyan Mudra</span>
     <span>💨 Vayu Mudra</span>
     <span>🔥 Surya Mudra</span>
@@ -138,6 +143,19 @@
     <span>🛡️ Shunya Mudra</span>
     <span>🫳 Apana Vayu Mudra</span>
   </div>
+  <div class="marquee-content">
+    <span>🧘‍♂️ Gyan Mudra</span>
+    <span>💨 Vayu Mudra</span>
+    <span>🔥 Surya Mudra</span>
+    <span>💧 Varun Mudra</span>
+    <span>🫀 Prana Mudra</span>
+    <span>🫁 Apana Mudra</span>
+    <span>🕉️ Dhyana Mudra</span>
+    <span>🛡️ Shunya Mudra</span>
+    <span>🫳 Apana Vayu Mudra</span>
+  </div>
+</div>
+
 
   <script>
     function goToMain(e) {
