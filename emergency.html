@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emergency Mudras</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4fdf9;
+      color: #2c2c2c;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(to right, #678d58, #a8d5ba);
+      color: white;
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .emoji-section {
+      text-align: center;
+      font-size: 30px;
+      margin: 40px 0 20px;
+    }
+
+    .emoji {
+      cursor: pointer;
+      margin: 0 15px;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+
+
+    .button-group {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .button-group button {
+      background-color: #678d58;
+      color: white;
+      padding: 12px 25px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button-group button:hover {
+      background-color: #4d6f3d;
+    }
+
+    /* Popup styles */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mudra-info {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      z-index: 999;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .mudra-info h2 {
+      color: #678d58;
+    }
+
+    .mudra-info img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #666;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Emergency Mudras 🚑</h1>
+    <p>Tap an emoji to discover the right mudra during urgent moments</p>
+  </header>
+
+  <div class="emoji-section">
+    <span class="emoji" onclick="showMudra('heart')">❤️ Heart related issues</span>
+    <span class="emoji" onclick="showMudra('asthma')">🫁 Breathing issues</span>
+    <span class="emoji" onclick="showMudra('faint')">💫 Dizziness</span>
+  </div>
+
+  <!-- 🌿 BUTTONS -->
+  <div class="button-group">
+    <button onclick="window.location.href='content.html'">🏠 Back to Home</button>
+    <button onclick="window.open('practice.html', '_blank')">🧘 Practice Mudras</button>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+  <div class="mudra-info" id="mudraDisplay">
+    <button class="close-btn" onclick="closePopup()">✖</button>
+    <div id="mudraContent"></div>
+  </div>
+
+  <script>
+    const mudras = {
+      heart: `
+        <h2>❤️ Apana Vayu Mudra (Mrita Sanjeevani Mudra)</h2>
+        <img src="heart mudra.jpeg" alt="Apana Vayu Mudra">
+        <p><strong>Purpose:</strong> Effective during heart issues or emergency chest pain.</p>
+        <p><strong>How to do it:</strong> Fold your index finger to touch the base of your thumb. Bring the tips of your middle, ring fingers, and thumb together. Keep the little finger straight. Practice with both hands.</p>
+      `,
+      asthma: `
+        <h2>🫁 Asthma Mudra</h2>
+        <img src="asthama mudra.png" alt="Asthma Mudra">
+        <p><strong>Purpose:</strong> Helps ease breathing difficulties.</p>
+        <p><strong>How to do it:</strong> Bring both hands in front of your chest. Bend middle fingers so their nails touch. Other fingers remain straight and apart. Bases of palms should touch.</p>
+      `,
+      faint: `
+        <h2>💫 Vayu Mudra</h2>
+        <img src="Vayu mudra.png" alt="Vayu Mudra">
+        <p><strong>Purpose:</strong> Helps with fainting, dizziness or ungroundedness.</p>
+        <p><strong>How to do it:</strong> Bend the index finger and press its tip to the base of the thumb. Press gently with the thumb. Keep other fingers extended.</p>
+      `
+    };
+
+    function showMudra(type) {
+      document.getElementById('mudraContent').innerHTML = mudras[type] || '';
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('mudraDisplay').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('mudraDisplay').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

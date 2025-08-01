@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mood Related Mudras</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4fdf9;
+      color: #2c2c2c;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(to right, #678d58, #a8d5ba);
+      color: white;
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .mood-select {
+      margin: 40px auto 20px;
+      text-align: center;
+    }
+
+    select {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .emoji-label {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .button-group {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .button-group button {
+      background-color: #678d58;
+      color: white;
+      padding: 12px 25px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button-group button:hover {
+      background-color: #4d6f3d;
+    }
+
+  
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mudra-info {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      z-index: 999;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .mudra-info h2 {
+      color: #678d58;
+    }
+
+    .mudra-info img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #666;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Choose Your Mood 😊</h1>
+    <p>Get the perfect mudra for how you feel</p>
+  </header>
+
+  <div class="mood-select">
+    <div class="emoji-label">
+      😓 Anxious &nbsp;&nbsp; 😫 Stressed &nbsp;&nbsp; 😔 Demotivated &nbsp;&nbsp; 🌟 Success &nbsp;&nbsp; 🌊 Wish &nbsp;&nbsp; ⚡ Energy &nbsp;&nbsp; 😃 Happy &nbsp;&nbsp; 😨 Fear
+    </div>
+    <select onchange="showMudra(this.value)">
+      <option value="">-- Select Your Mood --</option>
+      <option value="success">Success</option>
+      <option value="wish">Wish Fulfillment</option>
+      <option value="anxiety">Anxiety / Stress / Demotivation</option>
+      <option value="energy">Energy</option>
+      <option value="happy">Happiness</option>
+      <option value="fear">Fear</option>
+    </select>
+  </div>
+
+  <div class="button-group">
+    <button onclick="window.location.href='content.html'">🏠 Back to Home</button>
+    <button onclick="window.open('practice.html', '_blank')">🧘 Practice Mudras</button>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+  <div class="mudra-info" id="mudraDisplay">
+    <button class="close-btn" onclick="closePopup()">✖</button>
+    <div id="mudraContent"></div>
+  </div>
+
+  <script>
+    const mudras = {
+      success: `
+        <h2>🌟 Mudra for Success</h2>
+        <img src="utarbodi mudra.jpeg" alt="Uttarabodhi Mudra">
+        <h3>Uttarabodhi Mudra</h3>
+        <p><strong>Purpose:</strong> Enhances self-confidence, sharpens focus, and encourages a positive mindset.</p>
+        <p><strong>How to do it:</strong> Interlock all fingers except index and thumbs. Point index fingers upward, thumbs downward.</p>
+        <img src="Vetri mudra.png" alt="Vetri Mudra">
+        <h3>Vetri Mudra</h3>
+        <p><strong>Purpose:</strong> Overcoming obstacles and achieving goals.</p>
+        <p><strong>How to do it:</strong> Variation of Uttarabodhi, but thumbs interlocked and pointing outward.</p>`,
+
+      wish: `
+        <h2>🌊 Mudra for Wish Fulfillment</h2>
+        <img src="wish mudra.png" alt="Vara Mudra">
+        <h3>Vara Mudra (Wish Mudra)</h3>
+        <p><strong>Purpose:</strong> Compassion and granting of wishes.</p>
+        <p><strong>How to do it:</strong> Left hand palm forward, fingers pointing down, held at waist level.</p>`,
+
+      anxiety: `
+        <h2>😓 Mudra for Anxiety, Stress, and Demotivation</h2>
+        <img src="gyan mudra.png" alt="Gyan Mudra">
+        <h3>Gyan Mudra</h3>
+        <p><strong>Purpose:</strong> Calms the mind and improves mood.</p>
+        <img src="Vayu mudra.png" alt="Vayu Mudra">
+        <h3>Vayu Mudra</h3>
+        <p><strong>Purpose:</strong> Reduces restlessness and nervousness.</p>
+        <img src="pruthvi mudra.jpeg" alt="Prithvi Mudra">
+        <h3>Prithvi Mudra</h3>
+        <p><strong>Purpose:</strong> Brings grounding and inner strength.</p>`,
+
+      energy: `
+        <h2>⚡ Mudra for Energy</h2>
+        <img src="prana mudra.jpeg" alt="Prana Mudra">
+        <h3>Prana Mudra</h3>
+        <p><strong>Purpose:</strong> Revitalizes and combats fatigue.</p>
+        <img src="Ganesha mudra.png" alt="Ganesha Mudra">
+        <h3>Ganesha Mudra</h3>
+        <p><strong>Purpose:</strong> Boosts confidence and removes blockages.</p>`,
+
+      happy: `
+        <h2>😃 Mudra for Happiness</h2>
+        <img src="udhana mudra.png" alt="Hansi Mudra">
+        <h3>Hansi Mudra</h3>
+        <p><strong>Purpose:</strong> Cultivates joy and peace.</p>
+        <p><strong>How to do it:</strong> Touch thumb, index, middle, and ring finger tips together; pinky remains out.</p>`,
+
+      fear: `
+        <h2>😨 Mudra for Fear</h2>
+        <img src="abhaya mudra.png" alt="Abhaya Mudra">
+        <h3>Abhaya Mudra</h3>
+        <p><strong>Purpose:</strong> Symbolizes protection and peace.</p>
+        <p><strong>How to do it:</strong> Raise right hand to shoulder height, palm outward, fingers extended together.</p>`
+    };
+
+    function showMudra(mood) {
+      if (mudras[mood]) {
+        document.getElementById('mudraContent').innerHTML = mudras[mood];
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('mudraDisplay').style.display = 'block';
+      } else {
+        closePopup();
+      }
+    }
+
+    function closePopup() {
+      document.getElementById('mudraDisplay').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

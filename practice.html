@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mudra Practice Timer with Mood</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #a8d5ba, #e7f7ef);
+      text-align: center;
+      padding: 50px 20px;
+      color: #2c2c2c;
+      transition: background 1s ease, color 1s ease;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #4d6f3d;
+    }
+
+    .mood-select {
+      margin-bottom: 30px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .timer-buttons {
+      margin: 30px 0;
+    }
+
+    .timer-buttons button {
+      padding: 12px 25px;
+      margin: 10px;
+      background-color: #678d58;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition:  0.3s;
+    }
+
+    .timer-buttons button:hover {
+      background-color: #4d6f3d;
+    }
+
+    #countdown {
+      font-size: 48px;
+      margin: 40px 0 20px;
+    }
+
+    #message {
+      font-size: 24px;
+      color: #2b5e38;
+      margin-top: 20px;
+    }
+
+    .home-button {
+      margin-top: 40px;
+    }
+
+    .home-button button {
+      background-color: #4d6f3d;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .home-button button:hover {
+      background-color: #2e4f2a;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧘 Mudra Practice Timer</h1>
+  <div class="mood-select">
+    <label for="moodSelector">Choose Your Mood 🎭:</label><br><br>
+    <select id="moodSelector">
+      <option value="default">-- Select Mood --</option>
+      <option value="happy">😊 Happy</option>
+      <option value="calm">😌 Calm</option>
+      <option value="focused">🎯 Focused</option>
+      <option value="stressed">😣 Stressed</option>
+      <option value="tired">😴 Tired</option>
+    </select>
+  </div>
+
+  <p>Select your desired practice duration below:</p>
+  <div class="timer-buttons">
+    <button onclick="startTimer(5)">5 Minutes</button>
+    <button onclick="startTimer(10)">10 Minutes</button>
+    <button onclick="startTimer(15)">15 Minutes</button>
+  </div>
+
+  <div id="countdown">00:00</div>
+  <div id="message"></div>
+
+
+  <audio id="bgMusic" loop>
+    <source src="" type="audio/mpeg" />
+    Your browser does not support the audio tag.
+  </audio>
+
+ 
+  <div class="home-button">
+    <button onclick="window.location.href='content.html'">🏠 Back to Home</button>
+  </div>
+
+  <script>
+    let timer;
+    const bgMusic = document.getElementById('bgMusic');
+    const moodSelector = document.getElementById('moodSelector');
+    const body = document.body;
+
+    const moods = {
+      happy: {
+        background: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
+        color: '#000',
+        music: 'https://www.bensound.com/bensound-music/bensound-sunny.mp3'
+      },
+      calm: {
+        background: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+        color: '#000',
+        music: 'https://www.bensound.com/bensound-music/bensound-slowmotion.mp3'
+      },
+      focused: {
+        background: '#1e1e1e',
+        color: '#fff',
+        music: 'https://www.bensound.com/bensound-music/bensound-creativeminds.mp3'
+      },
+      stressed: {
+        background: 'linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%)',
+        color: '#fff',
+        music: 'https://www.bensound.com/bensound-music/bensound-tomorrow.mp3'
+      },
+      tired: {
+        background: 'linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%)',
+        color: '#fff',
+        music: 'https://www.bensound.com/bensound-music/bensound-dreams.mp3'
+      }
+    };
+
+    function applyMood(mood) {
+      const theme = moods[mood];
+      if (theme) {
+        body.style.background = theme.background;
+        body.style.color = theme.color;
+        bgMusic.src = theme.music;
+        bgMusic.currentTime = 0;
+        bgMusic.play();
+      }
+    }
+
+    moodSelector.addEventListener('change', () => {
+      const selectedMood = moodSelector.value;
+      if (selectedMood !== 'default') {
+        applyMood(selectedMood);
+      } else {
+        bgMusic.pause();
+        document.body.style.background = '';
+        document.body.style.color = '#2c2c2c';
+      }
+    });
+
+    function startTimer(minutes) {
+      clearInterval(timer);
+      const endTime = new Date().getTime() + minutes * 60 * 1000;
+
+      timer = setInterval(() => {
+        let now = new Date().getTime();
+        let distance = endTime - now;
+
+        if (distance <= 0) {
+          clearInterval(timer);
+          document.getElementById('countdown').innerText = "00:00";
+          document.getElementById('message').innerText = "🌟 Well done! Your mudra practice is complete.";
+          bgMusic.pause();
+          return;
+        }
+
+        let mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerText =
+          `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        document.getElementById('message').innerText = "";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

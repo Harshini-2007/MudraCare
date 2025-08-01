@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MudraCare Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4fdf9;
+      color: #2c2c2c;
+    }
+
+    header {
+      background: linear-gradient(to right, #678d58, #a8d5ba);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+      font-size: 40px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 60px 20px 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 240px;
+      height: 260px;
+      text-align: center;
+      padding: 25px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      height: 80px;
+    }
+
+    .card h3 {
+      margin-top: 20px;
+      color: #678d58;
+      font-size: 20px;
+    }
+
+    .why-section {
+      background: #eaf7f1;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .why-section h2 {
+      color: #678d58;
+      font-size: 32px;
+    }
+
+    .why-section p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 20px auto 0;
+      color: #444;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Choose Your Healing Path</h1>
+    <p>Explore mudras based on your body’s needs and life moments</p>
+  </header>
+
+  <div class="cards-container">
+    <div class="card" onclick="window.location.href='body-pains.html'">
+      <img src="bodypain.png" alt="Body Pains">
+      <h3>Body Pains</h3>
+    </div>
+    <div class="card" onclick="window.location.href='mood-related.html'">
+      <img src="mood.png" alt="Mood Related">
+      <h3>Mood Related</h3>
+    </div>
+    <div class="card" onclick="window.location.href='emergency.html'">
+      <img src="emergency.png" alt="Emergency">
+      <h3>Emergency</h3>
+    </div>
+  </div>
+
+  <div class="why-section">
+    <h2>Why Mudras?</h2>
+    <p>Mudras are ancient hand gestures rooted in Indian wellness practices. They help channel energy, improve mental clarity, balance the body, and promote healing — all without medicine. Choose your path and discover your own rhythm of wellness through this ancient art.</p>
+  </div>
+
+</body>
+</html>

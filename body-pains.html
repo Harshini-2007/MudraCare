@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MudraCare – Healing Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #2c2c2c;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: #f4fdf9;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .emoji-bar {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    .emoji-btn {
+      font-size: 30px;
+      cursor: pointer;
+      margin: 0 10px;
+      transition: transform 0.2s;
+    }
+
+    .emoji-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .section {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 999;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translate(-50%, -60%);}
+      to {opacity: 1; transform: translate(-50%, -50%);}
+    }
+
+    .section h3 {
+      color: #678d58;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .mudra-title {
+      font-size: 18px;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+
+    .how-to {
+      margin-left: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .mudra-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .mudra-block img {
+      width: 120px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 600px) {
+      .mudra-block {
+        flex-direction: column;
+        align-items: center;
+      }
+      .mudra-block img {
+        width: 100px;
+      }
+    }
+
+    header {
+      background: linear-gradient(to right, #678d58, #a8d5ba);
+      color: white;
+      text-align: center;
+      padding: 50px 20px 30px;
+      margin: 0;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .button-group {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .button-group button {
+      background-color: #678d58;
+      color: white;
+      padding: 12px 25px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button-group button:hover {
+      background-color: #4d6f3d;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 998;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #444;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Select a Health Concern</h1>
+</header>
+
+<div class="emoji-bar">
+  <span class="emoji-btn" onclick="showSection('bodyPain')">💪 Body Pain</span>
+  <span class="emoji-btn" onclick="showSection('eyeEar')">👀 Eye/Ear pain</span>
+  <span class="emoji-btn" onclick="showSection('coldFever')">🤧 Cold Fever Cough</span>
+  <span class="emoji-btn" onclick="showSection('headache')">🤯 Headache</span>
+</div>
+
+<div class="button-group">
+  <button onclick="window.location.href='content.html'">🏠 Back to Home</button>
+  <button onclick="window.open('practice.html', '_blank')">🧘 Practice Mudras</button>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeAllSections()"></div>
+
+<!-- SECTION TEMPLATES -->
+
+<div class="section" id="bodyPain">
+  <button class="close-btn" onclick="closeAllSections()">✖</button>
+  <h3>💪 Mudras for Body Pains (Back, Leg, Hand, Sprains)</h3>
+
+  <!-- Vayu -->
+  <div class="mudra-block">
+    <img src="Vayu mudra.png" alt="Vayu Mudra" />
+    <div>
+      <div class="mudra-title">Vayu Mudra</div>
+      <p><strong>Purpose:</strong> For leg pain, sprains, spasms, and sciatica.</p>
+      <ul class="how-to">
+        <li>Bend index finger to base of thumb.</li>
+        <li>Press gently with thumb.</li>
+        <li>Other fingers extended.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Varun -->
+  <div class="mudra-block">
+    <img src="watermudra.png" alt="Varun Mudra" />
+    <div>
+      <div class="mudra-title">Varun Mudra</div>
+      <p><strong>Purpose:</strong> For hand joint pain, inflammation.</p>
+      <ul class="how-to">
+        <li>Touch little finger tip to thumb.</li>
+        <li>Do not press hard.</li>
+        <li>Others extended.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Back -->
+  <div class="mudra-block">
+    <img src="back mudra.jpeg" alt="Back Mudra" />
+    <div>
+      <div class="mudra-title">Back Mudra</div>
+      <p><strong>Purpose:</strong> Neck and back tension relief.</p>
+      <ul class="how-to">
+        <li>Right: Thumb + middle + little finger tips.</li>
+        <li>Left: Thumb + index finger tips.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Ganesha -->
+  <div class="mudra-block">
+    <img src="Ganesha mudra.png" alt="Ganesha Mudra" />
+    <div>
+      <div class="mudra-title">Ganesha Mudra</div>
+      <p><strong>Purpose:</strong> Opens chest, eases fatigue.</p>
+      <ul class="how-to">
+        <li>Hook fingers at chest, palms opposing.</li>
+        <li>Pull gently while exhaling.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Eye/Ear -->
+<div class="section" id="eyeEar">
+  <button class="close-btn" onclick="closeAllSections()">✖</button>
+  <h3>👀 Mudras for Eye and Ear Problems</h3>
+
+  <div class="mudra-block">
+    <img src="prana mudra.jpeg" alt="Prana Mudra" />
+    <div>
+      <div class="mudra-title">Prana Mudra</div>
+      <p><strong>Purpose:</strong> Eye strain, dryness, fatigue.</p>
+      <ul class="how-to">
+        <li>Ring + little fingers touch thumb tip.</li>
+        <li>Index + middle fingers extended.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mudra-block">
+    <img src="shunya mudra.jpeg" alt="Shunya Mudra" />
+    <div>
+      <div class="mudra-title">Shunya Mudra</div>
+      <p><strong>Purpose:</strong> For earaches, tinnitus.</p>
+      <ul class="how-to">
+        <li>Bend middle finger to base of thumb.</li>
+        <li>Press gently with thumb.</li>
+        <li>Others straight.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Cold/Fever -->
+<div class="section" id="coldFever">
+  <button class="close-btn" onclick="closeAllSections()">✖</button>
+  <h3>🤧 Mudras for Cold, Fever, and Cough</h3>
+
+  <div class="mudra-block">
+    <img src="linga mudra.png" alt="Linga Mudra" />
+    <div>
+      <div class="mudra-title">Linga Mudra</div>
+      <p><strong>Purpose:</strong> Heat generation, immunity, clears mucus.</p>
+      <ul class="how-to">
+        <li>Interlace fingers.</li>
+        <li>One thumb upright, other wraps it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mudra-block">
+    <img src="bronchi mudra.jpeg" alt="Bronchial Mudra" />
+    <div>
+      <div class="mudra-title">Bronchial Mudra</div>
+      <p><strong>Purpose:</strong> Eases breathing, opens chest.</p>
+      <ul class="how-to">
+        <li>Thumb at base of ring finger.</li>
+        <li>Middle finger at base of little finger.</li>
+        <li>Index finger straight.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Headache -->
+<div class="section" id="headache">
+  <button class="close-btn" onclick="closeAllSections()">✖</button>
+  <h3>🤯 Mudras for Headaches</h3>
+
+  <div class="mudra-block">
+    <img src="gyan mudra.png" alt="Gyan Mudra" />
+    <div>
+      <div class="mudra-title">Gyan Mudra</div>
+      <p><strong>Purpose:</strong> Mental clarity, relieves stress.</p>
+      <ul class="how-to">
+        <li>Touch index finger to thumb tip.</li>
+        <li>Others extended.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mudra-block">
+    <img src="Vayu mudra.png" alt="Vayu Mudra" />
+    <div>
+      <div class="mudra-title">Vayu Mudra</div>
+      <p><strong>Purpose:</strong> Migraine, sinus pressure.</p>
+      <ul class="how-to">
+        <li>Bend index to base of thumb, press gently.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mudra-block">
+    <img src="apana mudra.png" alt="Apana Mudra" />
+    <div>
+      <div class="mudra-title">Apana Mudra</div>
+      <p><strong>Purpose:</strong> Helps digestion-related headaches.</p>
+      <ul class="how-to">
+        <li>Join middle + ring fingers + thumb.</li>
+        <li>Others extended.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showSection(sectionId) {
+    closeAllSections();
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById(sectionId).style.display = 'block';
+  }
+
+  function closeAllSections() {
+    document.getElementById('overlay').style.display = 'none';
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.style.display = 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
