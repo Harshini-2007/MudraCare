@@ -54,8 +54,13 @@ Inspired by the healing power of yoga and mudras, this project aims to make holi
 #What is Extraordinary here
 
 -Re-Discovering India's ancient strength 
+
 -Category wise simple learning through images 
+
+- Unique blend of emojis for mudra selection (signifying blend of mudras in modern era would result in greatness just like the website)
+
 -Inbuilt with practice timer set up containing mystery features
+
 -User friendly and interactive 
 
 
