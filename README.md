@@ -2,7 +2,7 @@
 
 MudraCare is an interactive, beginner-friendly website that helps users discover and practice ancient Indian hand gestures (mudras) for health and wellness.
 Domain:Healthcare
-MudraCare is an interactive, beginner-friendly website that helps users discover and practice ancient Indian hand gestures (mudras) for health and wellness. 
+
 #Features
 - Loader[Element 1 used]
 -  Home page with ripple effect cursor  and infinite loop marquee[Element 6 and Element 8]
